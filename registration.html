@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="views/theme/assets/css/form.css">
+    <link rel="stylesheet" href="views/theme/assets/css/style.css">
+</head>
+<body>
+    <header class="header">
+
+        <a href="#" class="logo"> <img src="views/theme/assets/images/OUR LOGO.png" alt="" width="100" height="50"> </a>
+        <nav class="navbar">
+            <a href="index.html">home</a>
+            <a href="#services">services</a>
+            <a href="#about">about</a>
+            <a href="#doctors">Top Sellers</a>
+            <a href="#book">Contact</a>
+            <a href="#review">review</a>
+            <a href="registration.html">Login</a>
+        </nav>
+    
+        <div id="menu-btn" class="fas fa-bars"></div>
+    
+    </header>
+
+    <div class="hero">
+        <div class="form-box">
+            <div class="button-box">
+                <div id="btn"></div>
+                <button type="button" class="toggle-btn" onclick="login()">Log In</button>
+                <button type="button" class="toggle-btn" onclick="register()">Register</button>
+            </div>
+            <div class="social-icons">
+                <img src="views/theme/assets/images/apple.png" alt="">
+                <img src="views/theme/assets/images/google.png" alt="">
+                <img src="views/theme/assets/images/facebook.png" alt="">
+            </div>
+            <form id="login" class="input-group">
+                <input type="text" class="input-field" name="email" placeholder="User ID" required>
+                <input type="password" class="input-field" name="password" placeholder="Enter Password" required>
+                <input type="checkbox" class="checkbox"><span>Remember Password</span>
+                <button type="submit" class="submit-btn">Log in</button>
+            </form>
+            <form id="register" class="input-group" action="" method="POST">
+                <input type="text" class="input-field" name="name" placeholder="User Name" required>
+                <input type="email" class="input-field" name="email" placeholder="Email Id" required>
+                <input type="password" class="input-field" name="password" placeholder="Enter Password" required>
+                <input type="checkbox" class="checkbox"><span>I Agree with T&C</span>
+                <button type="submit" class="submit-btn">Register</button>
+            </form>
+        </div>
+        
+    </div>
+    <section class="footer">
+
+        <div class="box-container">
+    
+            <div class="box">
+                <h3>quick links</h3>
+                <a href="#"> <i class="fas fa-chevron-right"></i> home </a>
+                <a href="#"> <i class="fas fa-chevron-right"></i> services </a>
+                <a href="#"> <i class="fas fa-chevron-right"></i> about </a>
+                <a href="#"> <i class="fas fa-chevron-right"></i> Sellers </a>
+                <a href="#"> <i class="fas fa-chevron-right"></i> Contact </a>
+                <a href="#"> <i class="fas fa-chevron-right"></i> review </a>
+            </div>
+    
+            <div class="box">
+                <h3>our services</h3>
+                <a href="#"> <i class="fas fa-chevron-right"></i> DSA </a>
+                <a href="#"> <i class="fas fa-chevron-right"></i> OOP </a>
+                <a href="#"> <i class="fas fa-chevron-right"></i> TECHNO </a>
+                <a href="#"> <i class="fas fa-chevron-right"></i> MAD </a>
+                <a href="#"> <i class="fas fa-chevron-right"></i> OTHERS </a>
+            </div>
+    
+            <div class="box">
+                <h3>contact info</h3>
+                <a href="#"> <i class="fas fa-phone"></i> +92-317-4222010 </a>
+                <a href="#"> <i class="fas fa-phone"></i> +92-309-4222010 </a>
+                <a href="#"> <i class="fas fa-envelope"></i> Bravebeginners@gmail.com </a>
+                <a href="#"> <i class="fas fa-envelope"></i> Bravebeginners@gmail.com </a>
+                <a href="#"> <i class="fas fa-map-marker-alt"></i> Superior University Gold Campus </a>
+            </div>
+    
+            <div class="box">
+                <h3>follow us</h3>
+                <a href="#"> <i class="fab fa-facebook-f"></i> facebook </a>
+                <a href="#"> <i class="fab fa-twitter"></i> twitter </a>
+                <a href="#"> <i class="fab fa-twitter"></i> twitter </a>
+                <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
+                <a href="#"> <i class="fab fa-linkedin"></i> linkedin </a>
+                <a href="#"> <i class="fab fa-pinterest"></i> pinterest </a>
+            </div>
+    
+        </div>
+    
+    </section>
+
+    <script>
+        var x = document.getElementById("login");
+        var y = document.getElementById("register");
+        var z = document.getElementById("btn");
+        function register(){
+            x.style.left = "-400px";
+            y.style.left = "50px";
+            z.style.left = "110px";
+        }
+        function login(){
+            x.style.left = "50px";
+            y.style.left = "450px";
+            z.style.left = "0px";
+        }
+    </script>
+</body>
+</html>
+
+<?php
+
+        
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "webproject";
+// Create connection
+$conn = new mysqli(
+    $servername,
+    $username,
+    $password,
+    $dbname
+);
+
+if (isset($_POST['name'])) {
+$name = $_POST['name'];
+$phone = $_POST['email'];
+$msg = $_POST['password'];
+
+
+$sql = "INSERT INTO `register`(`name`, `email`, `password`) VALUES ('$name','$phone','$msg')";
+
+if(mysqli_query($conn, $sql)){
+echo "<h3>Thank You For you Register  <br>"
+    . " You can login <br>"
+    . "</h3>";
+
+
+} else{
+echo "ERROR: Hush! Sorry $sql. "
+    . mysqli_error($conn);
+}
+}
+
+if (isset($_GET['email']) && isset($_GET['password'])) {
+// echo 'aaa';
+//  exit;
+$email= $_GET['email'];
+$new_pass= $_GET['password'];
+     $select = mysqli_query($conn, "SELECT `email` FROM `register` WHERE `email` = '".$_GET['email']."'") or exit(mysqli_error($conn));
+     $pass = mysqli_query($conn, "SELECT `password` FROM `register` WHERE `password` = '".$_GET['password']."'") or exit(mysqli_error($conn));
+     
+     if(mysqli_num_rows($select)) {
+        $sql = "SELECT `password` FROM `register` WHERE `email` = '$email' ";
+        $result = mysqli_query($conn, $sql);
+         $row = mysqli_fetch_array($result);
+         $old_pass =  $row['password'];
+         if($new_pass === $old_pass){
+            // header("Location: ../Webproject/index.php");
+          //   exit();
+            echo '<h1>done</h1>';
+            exit;
+         }
+         exit('<h1>Invalid Email or Password Try Again</h1>');
+     }
+     else {
+        echo 'Invalid Email or Password Try Again';
+     }
+
+   }
+?>
+
